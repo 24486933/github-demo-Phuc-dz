@@ -1,8 +1,13 @@
 
 package donhangdemo;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
 
 public class JFDonHang extends javax.swing.JFrame {
@@ -10,7 +15,8 @@ public class JFDonHang extends javax.swing.JFrame {
     List <DonHang> list = new ArrayList<DonHang>();
     DonHang x;
     private static int pos = 0;
-    
+    private static int check = 0;
+    JPanel panel;
     public JFDonHang() {
         initComponents();
         this.jPanel1.setBackground(Color.LIGHT_GRAY);
@@ -40,6 +46,7 @@ public class JFDonHang extends javax.swing.JFrame {
         this.txtmahoadon4.setText("" + x.getDongia());
         this.txtmahoadon5.setText(x.getHansudung());
         this.txtmahoadon6.setText(x.getNhacungcap());
+        OnOff(true, false);
         
     }
     
@@ -53,10 +60,17 @@ public class JFDonHang extends javax.swing.JFrame {
             model.addRow(new Object[]{n++, x.getMahoadon(),x.getTenhang(),x.getPhanloai(),x.getSoluong(),x.getDongia(),x.getHansudung(),x.getNhacungcap()});
         }
     }
+    public void OnOff(boolean a, boolean b) {
+        this.btnSave.show(b);
+        this.btnCancel.show(b);
+        this.btnadd.show(a);
+        this.btnedit.show(a);
+        this.btndelete.show(a);
+    }
 
    
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -136,15 +150,35 @@ public class JFDonHang extends javax.swing.JFrame {
 
         btndelete.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btndelete.setText("Xóa");
+        btndelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndeleteActionPerformed(evt);
+            }
+        });
 
         btnSave.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSave.setText("Lưu");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnCancel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnCancel.setText("Hủy bỏ");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         btnadd.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnadd.setText("Thêm");
+        btnadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Số lượng:");
@@ -295,6 +329,16 @@ public class JFDonHang extends javax.swing.JFrame {
                 "Mã hóa đơn", "Tên hàng", "Phân Loại", "Số lượng", "Đơn giá", "Hạn sử dụng", "Nhà cung cấp"
             }
         ));
+        tblDonHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDonHangMouseClicked(evt);
+            }
+        });
+        tblDonHang.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblDonHangKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblDonHang);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -335,39 +379,110 @@ public class JFDonHang extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void txtmahoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmahoadonActionPerformed
+    private void txtmahoadonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtmahoadonActionPerformed
+    }                                           
 
-    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
+    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
-    }//GEN-LAST:event_btneditActionPerformed
+        OnOff(false, true);
+        check = -1;
+    }                                       
 
-    private void txtmahoadon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmahoadon1ActionPerformed
+    private void txtmahoadon1ActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtmahoadon1ActionPerformed
+    }                                            
 
-    private void txtmahoadon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmahoadon2ActionPerformed
+    private void txtmahoadon2ActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtmahoadon2ActionPerformed
+    }                                            
 
-    private void txtmahoadon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmahoadon3ActionPerformed
+    private void txtmahoadon3ActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtmahoadon3ActionPerformed
+    }                                            
 
-    private void txtmahoadon4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmahoadon4ActionPerformed
+    private void txtmahoadon4ActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtmahoadon4ActionPerformed
+    }                                            
 
-    private void txtmahoadon5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmahoadon5ActionPerformed
+    private void txtmahoadon5ActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtmahoadon5ActionPerformed
+    }                                            
 
-    private void txtmahoadon6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmahoadon6ActionPerformed
+    private void txtmahoadon6ActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtmahoadon6ActionPerformed
+    }                                            
+
+    private void tblDonHangMouseClicked(java.awt.event.MouseEvent evt) {                                        
+        // TODO add your handling code here:
+        pos = this.tblDonHang.getSelectedRow();
+        View();
+        
+    }                                       
+
+    private void tblDonHangKeyReleased(java.awt.event.KeyEvent evt) {                                       
+        // TODO add your handling code here:
+        pos = this.tblDonHang.getSelectedRow();
+        View();
+    }                                      
+
+    private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {                                       
+        // TODO add your handling code here:
+        this.txtmahoadon.setText("");
+        this.txtmahoadon1.setText("");
+        this.txtmahoadon2.setText("");
+        this.txtmahoadon3.setText("");
+        this.txtmahoadon4.setText("");
+        this.txtmahoadon5.setText("");
+        this.txtmahoadon6.setText("");
+        
+        OnOff(false, true);
+        check = 1;
+    }                                      
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+        String mahoadon = this.txtmahoadon.getText();
+        String tenhang = this.txtmahoadon1.getText();
+        String phanloai = this.txtmahoadon2.getText();
+        String soluong = this.txtmahoadon3.getText();
+        String hansudung = this.txtmahoadon4.getText();
+        String nhacungcap = this.txtmahoadon5.getText();
+        String dongia = this.txtmahoadon6.getText();
+        if (check ==1)
+        {
+            list.add(new DonHang(mahoadon,tenhang,phanloai,soluong,hansudung,nhacungcap,dongia));
+        }
+        if (check == -1)
+        {
+            list.set(pos, new DonHang(mahoadon, tenhang, phanloai, soluong, hansudung, nhacungcap, dongia));
+        }
+        View();
+        ViewTable();
+    }                                       
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        View();
+    }                                         
+
+    private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        UIManager.put("OptionPane,messageFont", new FontUIResource(new Font( "Arial", Font.BOLD, 20)));
+        int n = JOptionPane.showConfirmDialog(panel, "Bạn có muốn xóa không?", "Alert", JOptionPane.YES_NO_OPTION);
+        if(n == JOptionPane.YES_OPTION)
+        {
+            list.remove(pos);
+            if(pos > list.size()-1)
+               pos = pos -1;
+            if(pos < 0)
+               pos = 0;
+        View();
+        ViewTable();
+        }
+    }                                         
 
     /**
      * @param args the command line arguments
@@ -404,7 +519,7 @@ public class JFDonHang extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnadd;
@@ -430,5 +545,5 @@ public class JFDonHang extends javax.swing.JFrame {
     private javax.swing.JTextField txtmahoadon4;
     private javax.swing.JTextField txtmahoadon5;
     private javax.swing.JTextField txtmahoadon6;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
